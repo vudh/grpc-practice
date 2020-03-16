@@ -1,0 +1,29 @@
+﻿@using Grpc.Net.Client
+@page "/"
+
+<h1>Hello, world!</h1>
+
+Welcome to your new app.
+
+<button class="btn btn-primary" @onclick="SayHello">Say Hello</button>
+
+<hr />
+
+<p>@Greeting</p>
+
+@functions {
+
+    private string Greeting;
+
+    async Task SayHello()
+    {
+        using var channel = GrpcChannel.ForAddress("https://localhost:5001");
+        var client = new Greeter.GreeterClient(channel);
+
+        var reply = await client.SayHelloAsync(new HelloRequest { Name = "Blazor gRPC Client" });
+        Greeting = reply.Message;
+    }
+
+}
+
+<SurveyPrompt Title="How is Blazor working for you?" />

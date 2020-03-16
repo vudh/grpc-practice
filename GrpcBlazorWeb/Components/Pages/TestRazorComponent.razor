@@ -1,0 +1,25 @@
+﻿@using GrpcGreeter
+@using Grpc.Net.Client
+
+<h1>Embeded Razor component invokes gRPC service</h1>
+
+<p>
+    <input @bind="yourName" placeholder="Type your name" />
+    <button @onclick="GetGreeting" class="btn btn-primary">Call gRPC service</button>
+</p>
+
+Server response: <strong>@serverResponse</strong>
+
+@code {
+    string yourName = "Bert";
+    string serverResponse;
+
+    async Task GetGreeting()
+    {
+        using var channel = GrpcChannel.ForAddress("https://localhost:5001");
+        var request = new HelloRequest { Name = yourName };
+        var client = new Greeter.GreeterClient(channel);
+        var reply = await client.SayHelloAsync(request);
+        serverResponse = reply.Message;
+    }
+}
