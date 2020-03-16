@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/GrpcBlazor/bin
+/GrpcBlazor/obj
+/GrpcBlazorWeb/bin
+/GrpcBlazorWeb/obj
+/GrpcGreeter/bin
+/GrpcGreeter/obj
+/GrpcGreeterClient/bin
+/GrpcGreeterClient/obj
+/GrpcGreeterShared/bin
+/GrpcGreeterShared/obj
